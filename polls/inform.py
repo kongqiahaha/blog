@@ -11,7 +11,9 @@ def index_inform():
         dict_inform["text_head_" + str(count)] = i.text_head
         dict_inform["text_user_" + str(count)] = i.text_user
         dict_inform["text_jianjie_" + str(count)] = i.text_jianjie
-        dict_inform["text_date_" + str(count)] = timezone.datetime.today().day - i.text_date.day
+        dict_inform["text_date_" + str(count)] = (timezone.now().year - i.text_date.year) * 12 * 30 + (
+                    timezone.now().month - i.text_date.month) * 30 + (timezone.now().day - i.text_date.day)
+
         count += 1
     del (dict_inform["text_jianjie_1"])
     return dict_inform
@@ -24,7 +26,9 @@ def entry_inform(id):
     dict_inform_entry = {"favorites": entry_text.text_favourite,
                          "entry_id": entry_text.text_id,
                          "writer_name": entry_text.text_user,
-                         "date": timezone.datetime.today().day - entry_text.text_date.day,
+                         "date": (timezone.now().year - entry_text.text_date.year) * 12 * 30 + (
+                                     timezone.now().month - entry_text.text_date.month) * 30 + (
+                                             timezone.now().day - entry_text.text_date.day),
                          "text_head": entry_text.text_head,
                          "text": entry_text.text_tt}
     return dict_inform_entry
