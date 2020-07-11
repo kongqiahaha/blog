@@ -9,5 +9,6 @@ urlpatterns = [
     path("about",views.about),
     path("message",views.message),
     path("testwriter",views.test_writer),
-    path("text",views.index)
+    path("text",views.index),
+    path("text_list",views.text_list),
 ]

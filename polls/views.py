@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.core.cache import cache
 from polls.inform import index_inform, entry_inform
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from polls.userfavourite import user_favourite, my_favourite_DAO, get_ip
 
 
@@ -45,7 +45,7 @@ def about(request):
 def entry(request):
     dict_entry = entry_inform(int(request.GET["id"]))
     if dict_entry is None:
-        return HttpResponse(status=404)
+        return redirect("/index.html")
     return render(request, "entry.html", dict_entry)
 
 
