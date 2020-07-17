@@ -1,6 +1,6 @@
-from polls.models import Textz
+from blog.models import Textz
 from django.utils import timezone
-
+import re
 
 def index_inform():
     text = Textz.objects.all()
@@ -15,6 +15,14 @@ def index_inform():
                     timezone.now().month - i.text_date.month) * 30 + (timezone.now().day - i.text_date.day)
 
         count += 1
+    if(count<=4):
+        for i in range(0,5-count):
+            dict_inform["text_id_" + str(count)]=None
+            dict_inform["text_head_" + str(count)] = None
+            dict_inform["text_user_" + str(count)] = None
+            dict_inform["text_jianjie_" + str(count)] = None
+            dict_inform["text_date_" + str(count)] = None
+
     del (dict_inform["text_jianjie_1"])
     return dict_inform
 
@@ -23,6 +31,10 @@ def entry_inform(id):
     if len(Textz.objects.filter(text_id=id)) == 0:
         return None
     entry_text = Textz.objects.get(text_id=id)
+    a=re.split("\r|\n",entry_text.text_tt)
+    while "" in a:
+        a.remove("")
+    print(a)
     dict_inform_entry = {"favorites": entry_text.text_favourite,
                          "entry_id": entry_text.text_id,
                          "writer_name": entry_text.text_user,
@@ -30,5 +42,5 @@ def entry_inform(id):
                                      timezone.now().month - entry_text.text_date.month) * 30 + (
                                              timezone.now().day - entry_text.text_date.day),
                          "text_head": entry_text.text_head,
-                         "text": entry_text.text_tt}
+                         "text": a}
     return dict_inform_entry

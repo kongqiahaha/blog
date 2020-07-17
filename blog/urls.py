@@ -9,6 +9,6 @@ urlpatterns = [
     path("about", views.about),
     path("message", views.message),
     path("testwriter", views.test_writer),
-    path("text", views.index),
+    path("texttosql",views.new_text_get_text),
     path("text_list", views.text_list),
 ]

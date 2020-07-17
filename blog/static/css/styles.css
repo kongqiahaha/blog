@@ -482,7 +482,7 @@ body .demo-blog {
   background-image: url('https://www.gstatic.com/images/icons/material/system/2x/post_facebook_black_24dp.png');
 }
 .social-btn__gplus {
-  background-image: url('https://www.gstatic.com/images/icons/material/system/2x/post_gplus_black_24dp.png');
+  background-image: url(../images/baseline_alternate_email_black_18dp.png);
 }
 .social-btn__share {
   color: rgba(0, 0, 0, 0.54);

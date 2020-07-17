@@ -1,8 +1,8 @@
 from django.http import HttpResponse
 from django.core.cache import cache
-from polls.inform import index_inform, entry_inform
-from django.shortcuts import render,redirect
-from polls.userfavourite import user_favourite, my_favourite_DAO, get_ip
+from blog.inform import index_inform, entry_inform
+from django.shortcuts import render, redirect
+from blog.userfavourite import *
 
 
 def user_favourite_add(request):
@@ -34,7 +34,10 @@ def user_favourite_add(request):
 def index(request):
     my_favourite = my_favourite_DAO(1)
     dict_inform = index_inform()
-    dict_inform["my_favourite"] = my_favourite.favourite
+    if my_favourite is False:
+        dict_inform["my_favourite"]=None
+    else:
+        dict_inform["my_favourite"] = my_favourite.favourite
     return render(request, "index.html", dict_inform)
 
 
@@ -59,3 +62,9 @@ def text_list(request):
 
 def test_writer(request):
     return render(request, "test_writer.html")
+
+
+def new_text_get_text(request):
+    a=new_text(request.POST["user_head"], request.POST["user_jj"], request.POST["user_name"], request.POST["user_text"])
+    print(Textz.objects.filter(text_id=a)[0].text_tt)
+    return render(request,"index.html")

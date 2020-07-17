@@ -24,14 +24,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>MDL-Static Website</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="/static/css/material.grey-orange.min.css" />
-    <link rel="stylesheet" href="/static/css/messagecss.css" />
+    <link rel="stylesheet" href="/blog/static/css/material.grey-orange.min.css" />
+    <link rel="stylesheet" href="/blog/static/css/messagecss.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 
 <body>
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800" style="background-color: white !important;">
+        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header" style="background-color: white">
             <!--
             <div class="mdl-layout__header-row portfolio-logo-row">
                 <span class="mdl-layout__title">
@@ -40,17 +40,36 @@
                 </span>
             </div>
             -->
-             <div class="mdl-layout__header-row">
-            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="index.html" title="go back" role="button">
-            <i class="material-icons" role="presentation">arrow_back</i>
-          </a>
-             </div>
+
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+
+                    <!--
+                    <a class="mdl-navigation__link " href="index.html">Portfolio</a>
+                    -->
+                    <a class="mdl-navigation__link" href="/">主页</a>
+                    <a class="mdl-navigation__link" href="about">关于</a>
+
+                    <a class="mdl-navigation__link is-active">反馈</a>
+                </nav>
+            </div>
+
         </header>
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                <!--
+                <a class="mdl-navigation__link is-active" href="index.html">Portfolio</a>
+                -->
+                <a class="mdl-navigation__link" href="/">主页</a>
+                <a class="mdl-navigation__link" href="about">关于</a>
+                <a class="mdl-navigation__link">反馈</a>
+            </nav>
+        </div>
         <main class="mdl-layout__content">
             <div class="mdl-grid portfolio-max-width portfolio-contact">
                 <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
                     <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">请编写宁的博客内容</h2>
+                        <h2 class="mdl-card__title-text">请提交宁的反馈</h2>
                     </div>
                     <!--
                     <div class="mdl-card__media">
@@ -58,25 +77,29 @@
                     </div>
                     -->
                     <div class="mdl-card__supporting-text">
+                        <!--
+                        <p>
+                            有什么问题来提吧
+                        </p>
 
-                        <form action="text" class="" method="post">
+                        <p>
+                            Excepteur reprehenderit sint exercitation ipsum consequat qui sit id velit elit. Velit anim eiusmod labore sit amet.
+                        </p>
+                        -->
+                        <form action="message" class="" method="post">
                             {% csrf_token %}
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="Text_head" name="user-head">
-                                <label class="mdl-textfield__label" for="Text_head">请输入标题</label>
-                            </div>
-                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="Text_jianjie" name="user-email">
-                                <label class="mdl-textfield__label" for="Text_jianjie">请输入简介</label>
-                            </div>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                 <input class="mdl-textfield__input" pattern="[A-Z,a-z,_]*" type="text" id="Name" name="user_name">
                                 <label class="mdl-textfield__label" for="Name">请输入宁的昵称</label>
                                 <span class="mdl-textfield__error">只能包含大小写字母及下划线</span>
                             </div>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <textarea class="mdl-textfield__input" type="text" rows="30" id="note" name="user_message"></textarea>
-                                <label class="mdl-textfield__label" for="note">请输入内容</label>
+                                <input class="mdl-textfield__input" type="text" id="Email" name="user-email">
+                                <label class="mdl-textfield__label" for="Email">请输入宁的Email</label>
+                            </div>
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                <textarea class="mdl-textfield__input" type="text" rows="5" id="note" name="user_message"></textarea>
+                                <label class="mdl-textfield__label" for="note">请输入宁的反馈</label>
                             </div>
                             <p>
                                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
@@ -102,7 +125,7 @@
             -->
         </main>
     </div>
-    <script src="/static/mdl/material.min.js"></script>
+    <script src="/blog/static/mdl/material.min.js"></script>
 </body>
 
 </html>
