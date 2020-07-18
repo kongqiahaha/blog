@@ -68,4 +68,4 @@ def new_text_get_text(request):
     a = new_text(request.POST["user_head"], request.POST["user_jj"], request.POST["user_name"],
                  request.POST["user_text"])
     print(Textz.objects.filter(text_id=a)[0].text_tt)
-    return render(request, "index.html")
+    return redirect( "index.html")
