@@ -7,12 +7,13 @@ def index_inform():
     text = Textz.objects.all()
     count = 1
     index_text_list = []
-    for i in list(text)[-1:-4]:
+    for i in reversed(list(text)[-4:]):
         dict_inform = {"text_id": i.text_id, "text_head": i.text_head, "text_user": i.text_user,
                        "text_jianjie": i.text_jianjie,
                        "text_date": (timezone.now().year - i.text_date.year) * 12 * 30 + (
                                timezone.now().month - i.text_date.month) * 30 + (timezone.now().day - i.text_date.day)}
         index_text_list.append(dict_inform)
+        count+=1
         """
     for i in list(text)[-1:-4]:
         dict_inform["text_id_" + str(count)] = i.text_id
