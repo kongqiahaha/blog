@@ -42,88 +42,63 @@
     <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
         <div class="demo-blog__posts mdl-grid">
-          <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
-            <div class="mdl-card__media mdl-color-text--grey-50">
-              <h3><a href="entry.html?id={{ text_id_1 }}">{{ text_head_1 }}</a></h3>
-            </div>
-            <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-              <div class="minilogo"></div>
-              <div>
-                <strong>{{ text_user_1 }}</strong>
-                <span>{{ text_date_1 }} days ago</span>
-              </div>
-            </div>
-          </div>
-          <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
-            <button  class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent" onclick="location.href='/testwriter'">
-              <i class="material-icons mdl-color-text--white" role="presentation">add</i>
-              <span class="visuallyhidden">add</span>
-            </button>
-            <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
-              <img src="/blog/static/images/logo.png">
-                <t id="favourite">+{{ my_favourite }}</t>
-            </div>
-            <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
-              <div>
-                <strong>点它-></strong>
-              </div>
-              <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menubtn">
-                   <li class="mdl-menu__item" onclick="location.href='about'">关于</li>
-                <li class="mdl-menu__item" onclick="location.href='message'">反馈</li>
-                <li class="mdl-menu__item" onclick="update_favourite()">点赞</li>
+            {% for text in index_text_list %}
+                {% if forloop.first %}
+                    <div class="mdl-card coffee-pic mdl-cell mdl-cell--8-col">
+                    <div class="mdl-card__media mdl-color-text--grey-50">
+                        <h3><a href="entry.html?id={{ text.text_id }}">{{ text.text_head }}</a></h3>
+                    </div>
+                    <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                        <div class="minilogo"></div>
+                        <div>
+                            <strong>{{ text.text_user }}</strong>
+                            <span>{{ text.text_date }} days ago</span>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
+                        <button  class="mdl-button mdl-js-ripple-effect mdl-js-button mdl-button--fab mdl-color--accent" onclick="location.href='/testwriter'">
+                            <i class="material-icons mdl-color-text--white" role="presentation">add</i>
+                            <span class="visuallyhidden">add</span>
+                        </button>
+                        <div class="mdl-card__media mdl-color--white mdl-color-text--grey-600">
+                            <img src="/blog/static/images/logo.png">
+                             <t id="favourite">+{{ my_favourite }}</t>
+                        </div>
+                        <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
+                            <div>
+                                <strong></strong>
+                            </div>
+                            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="menubtn">
+                                <li class="mdl-menu__item" onclick="location.href='about'">关于</li>
+                                <li class="mdl-menu__item" onclick="location.href='message'">反馈</li>
+                                <li class="mdl-menu__item" onclick="update_favourite()">点赞</li>
+                            </ul>
+                            <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                <i class="material-icons" role="presentation">more_vert</i>
+                                <span class="visuallyhidden">show menu</span>
+                            </button>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
+                        <div class="mdl-card__media mdl-color-text--grey-50">
+                            <h3><a href="entry.html?id={{ text.text_id }}">{{ text.text_head }}</a></h3>
+                        </div>
+                        <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
+                        {{ text.text_jianjie }}
+                        </div>
+                        <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
+                            <div class="minilogo"></div>
+                             <div>
+                                 <strong>{{ text.text_user }}</strong>
+                                 <span>{{ text.text_date }} days ago</span>
+                             </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
 
-              </ul>
-              <button id="menubtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                <i class="material-icons" role="presentation">more_vert</i>
-                <span class="visuallyhidden">show menu</span>
-              </button>
-            </div>
-          </div>
-          <div class="mdl-card on-the-road-again mdl-cell mdl-cell--12-col">
-            <div class="mdl-card__media mdl-color-text--grey-50">
-              <h3><a href="entry.html?id={{ text_id_2 }}">{{ text_head_2 }}</a></h3>
-            </div>
-            <div class="mdl-color-text--grey-600 mdl-card__supporting-text">
-            {{ text_jianjie_2 }}
-            </div>
-            <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-              <div class="minilogo"></div>
-              <div>
-                <strong>{{ text_user_2 }}</strong>
-                <span>{{ text_date_2 }} days ago</span>
-              </div>
-            </div>
-          </div>
-          <div class="mdl-card shopping mdl-cell mdl-cell--12-col">
-            <div class="mdl-card__media mdl-color-text--grey-50">
-              <h3><a href="entry.html?id={{ text_id_3 }}">{{ text_head_3 }}</a></h3>
-            </div>
-            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                {{ text_jianjie_3 }}
-            </div>
-            <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-              <div class="minilogo"></div>
-              <div>
-                <strong>{{ text_user_3 }}</strong>
-                <span>{{ text_date_3 }} days ago</span>
-              </div>
-            </div>
-          </div>
-            <div class="mdl-card shopping mdl-cell mdl-cell--12-col">
-            <div class="mdl-card__media mdl-color-text--grey-50">
-              <h3><a href="entry.html?id={{ text_id_4 }}">{{ text_head_4 }}</a></h3>
-            </div>
-            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                {{ text_jianjie_4 }}
-            </div>
-            <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-              <div class="minilogo"></div>
-              <div>
-                <strong>{{ text_user_4 }}</strong>
-                <span>{{ text_date_4 }} days ago</span>
-              </div>
-            </div>
-          </div>
           <nav class="demo-nav mdl-cell mdl-cell--12-col">
             <div class="section-spacer"></div>
             <a href="text_list" class="demo-nav__button" title="show more">
