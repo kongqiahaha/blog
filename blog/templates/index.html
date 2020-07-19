@@ -37,7 +37,7 @@
   <script src="/blog/static/plugins/js/jquery-3.5.1.min.js"></script>
   <script src="/blog/static/js/index.js"></script>
     <script>
-    function update_favourite() {$.post("favourite",{"my_id":1,csrfmiddlewaretoken:'{{ csrf_token }}' },function (data) {if(data !== "-1") {$("#favourite").text("+"+data);} else {alert("24小时之后再来");}},"text",)}
+    function update_favourite() {$.post("/favourite",{"my_id":1,csrfmiddlewaretoken:'{{ csrf_token }}' },function (data) {if(data !== "-1") {$("#favourite").text("+"+data);} else {alert("24小时之后再来");}},"text",)}
     </script>
     <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
@@ -127,7 +127,7 @@
       <div class="mdl-layout__obfuscator"></div>
     </div>
     <a href="https://github.com/kongqiahaha/blog" target="_blank" id="view-source" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--white">View Source</a>
-    <script src="../static/mdl/material.min.js"></script>
+    <script src="/blog/static/mdl/material.min.js"></script>
   </body>
   <script>
     Array.prototype.forEach.call(document.querySelectorAll('.mdl-card__media'), function(el) {
