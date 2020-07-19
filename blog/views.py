@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.core.cache import cache
-from blog.inform import index_inform, entry_inform
+from blog.inform import *
 from django.shortcuts import render, redirect
 from blog.userfavourite import *
 
@@ -57,7 +57,8 @@ def message(request):
 
 
 def text_list(request):
-    return render(request, "text_list.html")
+    dict_text = {'text_list': text_list_inform()}
+    return render(request, "text_list.html", dict_text)
 
 
 def test_writer(request):
@@ -67,5 +68,4 @@ def test_writer(request):
 def new_text_get_text(request):
     a = new_text(request.POST["user_head"], request.POST["user_jj"], request.POST["user_name"],
                  request.POST["user_text"])
-    print(Textz.objects.filter(text_id=a)[0].text_tt)
-    return redirect( "index.html")
+    return redirect("index.html")

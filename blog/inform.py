@@ -13,18 +13,7 @@ def index_inform():
                        "text_date": (timezone.now().year - i.text_date.year) * 12 * 30 + (
                                timezone.now().month - i.text_date.month) * 30 + (timezone.now().day - i.text_date.day)}
         index_text_list.append(dict_inform)
-        count+=1
-        """
-    for i in list(text)[-1:-4]:
-        dict_inform["text_id_" + str(count)] = i.text_id
-        dict_inform["text_head_" + str(count)] = i.text_head
-        dict_inform["text_user_" + str(count)] = i.text_user
-        dict_inform["text_jianjie_" + str(count)] = i.text_jianjie
-        dict_inform["text_date_" + str(count)] = (timezone.now().year - i.text_date.year) * 12 * 30 + (
-                    timezone.now().month - i.text_date.month) * 30 + (timezone.now().day - i.text_date.day)
-
         count += 1
-        """
     if count <= 4:
         for i in range(0, 5 - count):
             dict_inform = {"text_id": None, "text_head": None, "text_user": None, "text_jianjie": None,
@@ -52,3 +41,15 @@ def entry_inform(id):
                          "text_head": entry_text.text_head,
                          "text": a}
     return dict_inform_entry
+
+
+def text_list_inform():
+    more_text_list = []
+    for i in reversed(list(Textz.objects.all())[:-4]):
+        more_dict_form = {"text_id": i.text_id, "text_head": i.text_head, "text_user": i.text_user,
+                          "text_jianjie": i.text_jianjie,
+                          "text_date": (timezone.now().year - i.text_date.year) * 12 * 30 + (
+                                  timezone.now().month - i.text_date.month) * 30 + (
+                                                   timezone.now().day - i.text_date.day)}
+        more_text_list.append(more_dict_form)
+    return more_text_list
