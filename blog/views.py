@@ -1,7 +1,10 @@
+from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from django.core.cache import cache
 from blog.inform import *
 from django.shortcuts import render, redirect
+
+from blog.models import Person
 from blog.userfavourite import *
 
 
@@ -62,6 +65,7 @@ def text_list(request):
 
 
 def test_writer(request):
+
     return render(request, "test_writer.html")
 
 
@@ -69,3 +73,26 @@ def new_text_get_text(request):
     a = new_text(request.POST["user_head"], request.POST["user_jj"], request.POST["user_name"],
                  request.POST["user_text"])
     return redirect("index.html")
+
+
+def sign_in_page(request):
+    if request.method == "POST" and "username" in request.POST and "password" in request.POST:
+        username = request.POST["username"]
+        password = request.POST["password"]
+        person = authenticate(request, username=username, password=password)
+        if person:
+            return HttpResponse("success_sign_in")
+        else:
+            return HttpResponse("fail_sign_in")
+    else:
+        return render(request, 'sign_in.html')
+
+
+def sign_up_page(request):
+    if request.method == "POST" and "username" in request.POST and "password" in request.POST and "email" in request.POST:
+        Person(username=request.POST["username"], password=request.POST["password"],
+               email=request.POST["email"])
+
+        return HttpResponse("success_sign")
+    else:
+        return render(request, 'sign_up.html')

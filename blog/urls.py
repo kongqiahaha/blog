@@ -1,4 +1,5 @@
-from django.urls import path, re_path
+
+from django.urls import path
 from . import views
 
 urlpatterns = [
@@ -10,5 +11,5 @@ urlpatterns = [
     path("message", views.message),
     path("testwriter", views.test_writer),
     path("texttosql",views.new_text_get_text),
-    path("text_list", views.text_list),
+    path("text_list", views.text_list)
 ]

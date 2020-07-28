@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 from django.utils import timezone
 
@@ -17,3 +17,8 @@ class Textz(models.Model):
 class Unfavourable(models.Model):
     user_id = models.AutoField(primary_key=True)
     favourite = models.IntegerField(default=0)
+
+
+class Person(User):
+    class Meta:
+        proxy=True

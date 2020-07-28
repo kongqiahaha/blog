@@ -28,10 +28,12 @@ def entry_inform(id):
     if len(Textz.objects.filter(text_id=id)) == 0:
         return None
     entry_text = Textz.objects.get(text_id=id)
+    """
     a = re.split("\r|\n", entry_text.text_tt)
     while "" in a:
         a.remove("")
     print(a)
+    """
     dict_inform_entry = {"favorites": entry_text.text_favourite,
                          "entry_id": entry_text.text_id,
                          "writer_name": entry_text.text_user,
@@ -39,7 +41,7 @@ def entry_inform(id):
                                  timezone.now().month - entry_text.text_date.month) * 30 + (
                                          timezone.now().day - entry_text.text_date.day),
                          "text_head": entry_text.text_head,
-                         "text": a}
+                         "text": repr(entry_text.text_tt)}
     return dict_inform_entry
 
 
