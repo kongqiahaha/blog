@@ -67,7 +67,7 @@
     </div>
     <script src="/blog/static/mdl/material.min.js"></script>
 <script>
-    function sign_up() {$.post("/sign_up",$("#sign_up_form").serialize(),function (data) {if( data.code === 100){alert("注册成功");location.href="/sign_in";}else {alert("注册失败");location.href="/sign_up";}},"json")}
+    function sign_up() {$.post("/sign_up",$("#sign_up_form").serialize(),function (data) {if( data.code === 100){alert("注册成功");location.href="/sign_in";}else if(data.code===200){alert("用户名重复");location.href="/sign_up";}},"json")}
 </script>
 </body>
 

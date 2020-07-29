@@ -16,7 +16,7 @@ body::before {
        (max-width: 1024px) and (-webkit-max-device-pixel-ratio: 1.5),
        (max-width: 1024px) and (max-resolution: 1.5dppx) {
   body::before {
-    background-image: url(../images/bg_1024.jpg);
+    background-image: url(http://www.dmoe.cc/random.php);
   }
 }
 @media (min-width: 513px)  and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5),
@@ -24,7 +24,7 @@ body::before {
        (min-width: 1025px) and (max-width: 2048px) and (-webkit-max-device-pixel-ratio: 1.5),
        (min-width: 1025px) and (max-width: 2048px) and (max-resolution: 1.5dppx)  {
   body::before {
-    background-image: url(../images/bg_2048.jpg);
+    background-image: url(http://www.dmoe.cc/random.php);
   }
 }
 @media (min-width: 1025px) and (-webkit-min-device-pixel-ratio: 1.5),
@@ -32,7 +32,7 @@ body::before {
        (min-width: 2049px) and (-webkit-max-device-pixel-ratio: 1.5),
        (min-width: 2049px) and (max-resolution: 1.5dppx) {
   body::before {
-    background-image: url(../images/bg_2880.jpg);
+    background-image: url(http://www.dmoe.cc/random.php);
   }
 }
 body .demo-blog {
@@ -182,7 +182,7 @@ body .demo-blog {
           order: -1;
 }
 .demo-blog .coffee-pic .mdl-card__media {
-  background-image: url(../images/coffee.jpg);
+  background-image: url(https://api.66mz8.com/api/rand.portrait.php?type=动漫);
 }
 .demo-blog .something-else .mdl-card__media {
   display: -webkit-flex;
@@ -222,7 +222,7 @@ body .demo-blog {
   border-bottom-right-radius: 2px;
 }
 .demo-blog .on-the-road-again .mdl-card__media {
-  background-image: url(../images/road.jpg);
+  background-image: url(https://api.66mz8.com/api/rand.acg.php?type=二次元);
 }
 .demo-blog .shopping .mdl-card__media {
   background-image: url(../images/shopping.jpg);
@@ -284,7 +284,7 @@ body .demo-blog {
   background-color: transparent;
 }
 .demo-blog--blogpost .demo-blog__posts > .mdl-card .mdl-card__media {
-  background-image: url(../images/road_big.jpg);
+  background-image: url(http://www.dmoe.cc/random.php);
   height: 280px;
 }
 .demo-blog--blogpost .comments {
@@ -448,7 +448,7 @@ body .demo-blog {
 .demo-blog .minilogo {
   width: 44px;
   height: 44px;
-  background-image: url(../images/avatar.png);
+  background-image: url("../images/avatar.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 50%;

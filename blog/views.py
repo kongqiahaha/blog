@@ -65,11 +65,15 @@ def text_list(request):
 
 
 def test_writer(request):
-    return render(request, "test_writer.html")
+    try:
+        if request.session["is_login"]:
+            return render(request, "test_writer.html")
+    finally:
+        return redirect("/sign_in")
 
 
 def new_text_get_text(request):
-    a = new_text(request.POST["user_head"], request.POST["user_jj"], request.POST["user_name"],
+    a = new_text(request.POST["user_head"], request.POST["user_jj"], request.session["username"],
                  request.POST["user_text"])
     return redirect("index.html")
 
@@ -82,20 +86,28 @@ def sign_in_page(request):
         person = authenticate(request, username=username, password=password)
         if person:
             d["code"] = 100
+            request.session.set_expiry(60*60*24*7)
+            request.session["username"]=request.POST["username"]
+            request.session["is_login"]=True
         else:
             d["code"] = 200
         return JsonResponse(d)
     else:
-        return render(request, 'sign_in.html')
+        try:
+            if request.session["is_login"]:
+                return redirect("testwriter")
+        finally:
+            return render(request, 'sign_in.html')
 
 
 def sign_up_page(request):
     if request.method == "POST":
-        person = Person(username=request.POST["username"], password=request.POST["password"],
+
+        try:
+            person = Person.objects.create_user(username=request.POST["username"], password=request.POST["password"],
                         email=request.POST["email"])
-        if (person):
-            return JsonResponse({"code": 100})
-        else:
+        except:
             return JsonResponse({"code": 200})
+        return JsonResponse({"code":100})
     else:
         return render(request, 'sign_up.html')
