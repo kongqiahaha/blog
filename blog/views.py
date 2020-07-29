@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.core.cache import cache
 from blog.inform import *
 from django.shortcuts import render, redirect
@@ -65,7 +65,6 @@ def text_list(request):
 
 
 def test_writer(request):
-
     return render(request, "test_writer.html")
 
 
@@ -76,23 +75,27 @@ def new_text_get_text(request):
 
 
 def sign_in_page(request):
-    if request.method == "POST" and "username" in request.POST and "password" in request.POST:
+    if request.method == "POST":
+        d = {}
         username = request.POST["username"]
         password = request.POST["password"]
         person = authenticate(request, username=username, password=password)
         if person:
-            return HttpResponse("success_sign_in")
+            d["code"] = 100
         else:
-            return HttpResponse("fail_sign_in")
+            d["code"] = 200
+        return JsonResponse(d)
     else:
         return render(request, 'sign_in.html')
 
 
 def sign_up_page(request):
-    if request.method == "POST" and "username" in request.POST and "password" in request.POST and "email" in request.POST:
-        Person(username=request.POST["username"], password=request.POST["password"],
-               email=request.POST["email"])
-
-        return HttpResponse("success_sign")
+    if request.method == "POST":
+        person = Person(username=request.POST["username"], password=request.POST["password"],
+                        email=request.POST["email"])
+        if (person):
+            return JsonResponse({"code": 100})
+        else:
+            return JsonResponse({"code": 200})
     else:
         return render(request, 'sign_up.html')

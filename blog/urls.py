@@ -11,5 +11,7 @@ urlpatterns = [
     path("message", views.message),
     path("testwriter", views.test_writer),
     path("texttosql",views.new_text_get_text),
-    path("text_list", views.text_list)
+    path("text_list", views.text_list),
+    path("sign_in",views.sign_in_page),
+    path("sign_up",views.sign_up_page)
 ]
